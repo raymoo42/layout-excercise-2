@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+:root {
+    --primary-red: hsl(0, 36%, 70%);
+    --secondary-red: hsl(0, 93%, 68%);
+    --dark: hsl(0, 6%, 24%);
+    --gradient-gray: linear-gradient( 135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+    --gradient-red: linear-gradient( 135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+}
+
+.container {
+    display: grid;
+    width: 100vw;
+    grid-gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    padding: 2rem;
+    width: 100%;
+}
+
+.logo>img {
+    height: 2rem;
+}
+
+.image--brand img {
+    display: block;
+    object-fit: cover;
+    object-position: left;
+    width: 100%;
+    height: auto;
+}
+
+.content {
+    margin: 0 auto;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.content>h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--dark);
+    letter-spacing: 0.6rem;
+}
+
+.content>h1::first-line {
+    font-weight: 200;
+    color: var(--primary-red);
+}
+
+.content>p {
+    font-size: 0.9rem;
+    color: var(--primary-red);
+    text-align: center;
+    padding: 1rem 0;
+    line-height: 1.2rem;
+}
+
+.box--email {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-between;
+    border: 1px solid var(--primary-red);
+    border-radius: 2.5rem;
+    height: 4rem;
+    padding-left: 2rem;
+    width: 100%;
+    animation: pulse;
+}
+
+.button--email {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+    text-decoration: none;
+    background: var(--gradient-red);
+    border: none;
+    border-radius: 2.5rem;
+    height: 100%;
+    width: 6rem;
+    color: #fff;
+
+    animation: pulse 2s infinite alternate cubic-bezier(1,.13,.83,.67);
+    z-index: 1;
+}
+
+.button--email:hover {
+    animation: hover 1s ease-out forwards;
+}
+
+.button--email:active {
+    animation: press 0.2s forwards;
+}
+
+.input--email {
+    display: inline-block;
+    border: none;
+    font-weight: 200;
+    font-size: 1.2rem;
+    color: var(--primary-red);
+    border-radius: 2rem;
+    width: 90%;
+}
+
+.input--email:invalid{
+    background-color: red;
+}
+
+.input--email::placeholder {
+    font-weight: 200;
+    color: var(--primary-red);
+}
+
+@keyframes pulse {
+    0% {
+        transform: none;
+        -webkit-box-shadow: 0 0 0 0 var(--primary-red);
+    }
+    100% {
+        transform: scale(1.05);
+        -webkit-box-shadow: 0px 0px 3px 3px var(--primary-red);
+    }
+}
+
+@keyframes hover {
+    0% {
+        transform: none;
+        -webkit-box-shadow: none;
+    }
+    100% {
+        transform: translateY(-1px);
+        -webkit-box-shadow: 0px 0px 5px 5px var(--primary-red);
+    }
+}
+
+
+@keyframes press {
+    0% {
+        transform: none;
+    }
+    100% {
+        transform: translateY(1px);
+        -webkit-box-shadow: 0px 0px 1px 1px var(--primary-red);
+    }
+}
+
+@media screen and (min-width:375px) {
+    .container {
+        grid-template-areas: 
+        ". header header header" 
+        ". content . image" 
+        ". footer footer footer";
+        grid-template-columns: 1fr 6fr 1fr 8fr;
+    }
+    .logo {
+        grid-area: header;
+    }
+    .image--brand {
+        grid-area: image;
+    }
+    .content {
+        grid-area: content;
+    }
+    footer {
+        grid-area: footer;
+    }
+    .content>h1 {
+        text-align: left;
+        font-size: 6rem;
+    }
+    .content>p {
+        text-align: left;
+    }
+}
